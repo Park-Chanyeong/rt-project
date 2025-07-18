@@ -1,0 +1,53 @@
+[project]
+name = "rt-project"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Chanyeong",email = "pcy7805@naver.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.32.4,<3.0.0"
+]
+
+[tool.poetry]
+packages = [{include = "rt_project", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+flake8 = "^7.3.0"
+isort = "^5.13.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# 아래 섹션은 black의 설정
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+# 아래 섹션은 flake8의 설정
+[tool.flake8]
+ignore = ["E203", "E501", "W503"]
+max-line-length = 88
+exclude = [".git", "__pycache__", "docs/", "old/", "build/", "dist/"]
