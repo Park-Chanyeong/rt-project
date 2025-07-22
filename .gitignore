@@ -15,6 +15,9 @@ venv.bak/
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
 # Distribution / packaging
 .Python
@@ -54,3 +57,58 @@ coverage.xml
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+
+logs/
+dags/__pycache__/
+plugins/__pycache__/
+src/**/__pycache__/
+
+data/
+*.sql
+*.db
+*.sqlite3
+
+# Docker 관련
+.dockerignore
+
+# 로그 파일들
+*.log
+
+# 임시 파일
+*.tmp
+*.temp
+temp/
+archive/
+
+# 백업 파일
+*.bak
+*.backup
+
+# OS 관련
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 설정 파일
+config.ini
+secrets.yaml
+credentials.json
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Airflow 설정 파일
+airflow.cfg
+airflow.db
