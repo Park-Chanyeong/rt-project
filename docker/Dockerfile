@@ -14,16 +14,21 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-USER airflow
+# Poetry 설치 및 설정을 한 번에 처리
+RUN curl -sSL https://install.python-poetry.org | python3 - && \
+    /root/.local/bin/poetry config virtualenvs.create false
 
-# Python 의존성 설치
-RUN pip install --no-cache-dir \
-    "requests>=2.32.4,<3.0.0" \
-    "psycopg2-binary>=2.9.0,<3.0.0" \
-    "pandas>=2.0.0,<3.0.0" \
-    "redis>=4.0.0,<5.0.0" \
-    "celery>=5.2.0,<6.0.0" \
-    "click>=8.0.0,<9.0.0"
+# Poetry 파일들 먼저 복사
+COPY --chown=airflow:root pyproject.toml poetry.lock* /opt/airflow/
+
+# 작업 디렉토리 설정
+WORKDIR /opt/airflow
+
+# Poetry로 의존성만 설치
+RUN /root/.local/bin/poetry install --without dev --no-root
+
+# airflow 사용자로 변경
+USER airflow
 
 # 프로젝트 파일들 복사
 COPY --chown=airflow:root ./src /opt/airflow/plugins/src

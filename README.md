@@ -88,6 +88,8 @@ rt-project/
 ├── sql/
 │   └── init.sql                  # PostgreSQL 초기화 스크립트
 ├── data/dumps/                   # DB 백업 파일 저장소
+├── pyproject.toml                # Poetry 프로젝트 설정
+├── poetry.lock                   # Poetry 의존성 잠금 파일
 └── README.md
 ```
 

@@ -1,20 +1,20 @@
-[project]
+[tool.poetry]
 name = "rt-project"
 version = "0.1.0"
 description = "크랙 캐릭터 데이터 파이프라인"
-authors = [
-    {name = "Chanyeong",email = "pcy7805@naver.com"}
-]
+authors = ["Chanyeong <pcy7805@naver.com>"]
 readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
-    "requests>=2.32.4,<3.0.0",
-    "psycopg2-binary>=2.9.0,<3.0.0",
-    "pandas>=2.0.0,<3.0.0",
-]
-
-[tool.poetry]
 packages = [{include = "rt_project", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.32.4"
+psycopg2-binary = "^2.9.0"
+pandas = "^2.0.0"
+redis = "^4.0.0"
+celery = "^5.2.0"
+click = "^8.0.0"
+# Airflow는 베이스 이미지에 이미 설치되어 있으므로 제외
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
@@ -25,6 +25,9 @@ pytest = "^7.0.0"
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+crack-crawler = "rt_project.crawlers.crack_crawler:cli"
 
 [tool.black]
 line-length = 88
